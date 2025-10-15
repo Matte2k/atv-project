@@ -1,0 +1,15 @@
+\begin{table}[h!] 
+\centering 
+	 \begin{tabular}{l c c r} 
+		 \toprule 
+		 \textbf{Patch} &  $C_L$ &  $C_D$ & \% of Total $C_D$ \\ 
+		 \midrule 
+		 Upper Body     &  -0.086  &  0.079  &  16.97\% \\ 
+		 Lower Body     &  -0.033  &  0.324  &  69.73\% \\ 
+		 Front Tyre     &  0.010  &  0.020  &  4.35\% \\ 
+		 Rear Tyre      &  -0.008  &  0.030  &  6.46\% \\ 
+		 Spoiler        &  0.027  &  0.012  &  2.49\% \\ 
+		 TOTAL          &  -0.090  &  0.465  &  100.00\% \\ 
+		 \toprule 
+	 \end{table} 
+\end{tabular} 

@@ -1,0 +1,93 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2406                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      nut;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -1 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+    #includeEtc "caseDicts/setConstraintTypes"
+
+    lateralwall
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+
+    inlet
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+
+    outlet
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+
+    ground
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+
+    top
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+
+    SEDAN_SPOILER
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+
+    SEDAN_UPPER_BODY
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+
+    SEDAN_LOWER_BODY
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+
+    SEDAN_FRONT_WHEEL
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+
+   SEDAN_REAR_WHEEL
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+
+   symmetry
+    {
+        type            symmetry;
+    }
+
+}
+
+
+// ************************************************************************* //

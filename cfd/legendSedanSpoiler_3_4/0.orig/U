@@ -1,0 +1,84 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2406                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include        "include/initialConditions"
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform $flowVelocity;
+
+boundaryField
+{
+    #includeEtc "caseDicts/setConstraintTypes"
+
+    #include "include/fixedInlet"
+
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform (0 0 0);
+        value           $internalField;
+    }
+
+    ground
+    {
+        type            movingWallVelocity;
+        value           $internalField;
+    }
+
+    SEDAN_SPOILER
+    {
+        type            noSlip;
+    }
+
+    SEDAN_UPPER_BODY
+    {
+        type            noSlip;
+    }
+    
+    SEDAN_LOWER_BODY
+    {
+        type            noSlip;
+    }
+   
+    symmetry
+    {
+        type            symmetry;
+    }
+
+    SEDAN_FRONT_WHEEL
+    {
+        type            rotatingWallVelocity;
+        //value           uniform (0 0 0);  // This sets an initial guess for the velocity --> non sono certa che esista 
+        omega           60.34;      // Rotation in rad/s along an axis (adjust according to your rotation speed)
+        axis            (0 -1 0);   // Axis of rotation (for example, along the z-axis)
+        origin          (-0.927 0 0.263);   // The center of rotation (optional, depending on the case)
+    }  
+
+    SEDAN_REAR_WHEEL
+    {
+        type            rotatingWallVelocity;
+        //value           uniform (0 0 0);  // This sets an initial guess for the velocity --> non sono certa che esista 
+        omega           60.34;      // Rotation in rad/s along an axis (adjust according to your rotation speed)
+        axis            (0 -1 0);   // Axis of rotation (for example, along the z-axis)
+        origin          (0.927 0 0.263);   // The center of rotation (optional, depending on the case) --> cambiare questo!!!
+    }         
+
+    #include "include/BackUpperPatches"
+}
+
+
+// ************************************************************************* //

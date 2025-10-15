@@ -1,0 +1,194 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2406                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+upperBody
+{
+    type            forceCoeffs;
+
+    libs            (forces);
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (SEDAN_UPPER_BODY);
+    rho             rhoInf;                 // Indicates incompressible
+    rhoInf          1;                      // Required when rho = rhoInf
+    liftDir         (0 0 1);
+    dragDir         (1 0 0);
+    CofR            (0 0 0);                // Axle midpoint on ground
+    pitchAxis       (0 1 0);
+    magUInf         17.5;
+    lRef            1.854;                  // Wheelbase length
+    Aref            0.665;                  // Estimated for Sedan
+}
+
+spoiler
+{
+    type            forceCoeffs;
+
+    libs            (forces);
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (SEDAN_SPOILER);
+    rho             rhoInf;                 // Indicates incompressible
+    rhoInf          1;                      // Required when rho = rhoInf
+    liftDir         (0 0 1);
+    dragDir         (1 0 0);
+    CofR            (0 0 0);                // Axle midpoint on ground
+    pitchAxis       (0 1 0);
+    magUInf         17.5;
+    lRef            1.854;                  // Wheelbase length
+    Aref            0.665;                  // Estimated for Coupe
+}
+
+lowerBody
+{
+    type            forceCoeffs;
+
+    libs            (forces);
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (SEDAN_LOWER_BODY);     
+    rho             rhoInf;                 // Indicates incompressible
+    rhoInf          1;                      // Required when rho = rhoInf
+    liftDir         (0 0 1);
+    dragDir         (1 0 0);
+    CofR            (0 0 0);                // Axle midpoint on ground
+    pitchAxis       (0 1 0);
+    magUInf         17.5;
+    lRef            1.854;                  // Wheelbase length
+    Aref            0.665;                  // Estimated for Sedan
+}
+
+frontTyre
+{
+    type            forceCoeffs;
+
+    libs            (forces);
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (SEDAN_FRONT_WHEEL);     
+    rho             rhoInf;                 // Indicates incompressible
+    rhoInf          1;                      // Required when rho = rhoInf
+    liftDir         (0 0 1);
+    dragDir         (1 0 0);
+    CofR            (0 0 0);                // Axle midpoint on ground
+    pitchAxis       (0 1 0);
+    magUInf         17.5;
+    lRef            1.854;                  // Wheelbase length
+    Aref            0.665;                  // Estimated for Sedan
+}
+
+rearWheel
+{
+    type            forceCoeffs;
+
+    libs            (forces);
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (SEDAN_REAR_WHEEL);     
+    rho             rhoInf;                 // Indicates incompressible
+    rhoInf          1;                      // Required when rho = rhoInf
+    liftDir         (0 0 1);
+    dragDir         (1 0 0);
+    CofR            (0 0 0);                // Axle midpoint on ground
+    pitchAxis       (0 1 0);
+    magUInf         17.5;
+    lRef            1.854;                  // Wheelbase length
+    Aref            0.665;                  // Estimated for Sedan
+}
+
+all_0
+{
+    type            forceCoeffs;
+
+    libs            (forces);
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (SEDAN_SPOILER SEDAN_UPPER_BODY SEDAN_LOWER_BODY SEDAN_FRONT_WHEEL SEDAN_REAR_WHEEL);     
+    rho             rhoInf;                 // Indicates incompressible
+    rhoInf          1;                      // Required when rho = rhoInf
+    liftDir         (0 0 1);
+    dragDir         (1 0 0);
+    CofR            (0 0 0);                // Axle midpoint on ground
+    pitchAxis       (0 1 0);
+    magUInf         17.5;
+    lRef            1.854;                  // Wheelbase length
+    Aref            0.645;                  // Estimated for Sedan
+}
+
+all_dx
+{
+    type            forceCoeffs;
+
+    libs            (forces);
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (SEDAN_SPOILER SEDAN_UPPER_BODY SEDAN_LOWER_BODY SEDAN_FRONT_WHEEL SEDAN_REAR_WHEEL);     
+    rho             rhoInf;                 // Indicates incompressible
+    rhoInf          1;                      // Required when rho = rhoInf
+    liftDir         (0 0 1);
+    dragDir         (1 0 0);
+    CofR            (1 0 0);                // Axle midpoint on ground
+    pitchAxis       (0 1 0);
+    magUInf         17.5;
+    lRef            1.854;                  // Wheelbase length
+    Aref            0.645;                  // Estimated for Sedan
+}
+
+all_dz
+{
+    type            forceCoeffs;
+
+    libs            (forces);
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (SEDAN_SPOILER SEDAN_UPPER_BODY SEDAN_LOWER_BODY SEDAN_FRONT_WHEEL SEDAN_REAR_WHEEL);     
+    rho             rhoInf;                 // Indicates incompressible
+    rhoInf          1;                      // Required when rho = rhoInf
+    liftDir         (0 0 1);
+    dragDir         (1 0 0);
+    CofR            (0 0 1);                // Axle midpoint on ground
+    pitchAxis       (0 1 0);
+    magUInf         17.5;
+    lRef            1.854;                  // Wheelbase length
+    Aref            0.645;                  // Estimated for Sedan
+}
+
+
+// ************************************************************************* //

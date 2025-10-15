@@ -1,0 +1,123 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2406                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+All
+{
+    type            forceCoeffs;
+
+    libs            (forces);
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (deck guidevanes barriers);
+    rho             rhoInf;      // Indicates incompressible
+    rhoInf          1;           // Required when rho = rhoInf
+    liftDir         (0 1 0);
+    dragDir         (1 0 0);
+    CofR            (0 0.087 0);  // Axle midpoint on ground
+    pitchAxis       (0 0 1);
+    magUInf         7.8997;
+    lRef            1.017;        // Wheelbase length
+    Aref            0.3134691981;        // Estimated
+}
+
+deckCoeff
+{
+    type            forceCoeffs;
+
+    libs            (forces);
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (deck);
+    rho             rhoInf;      // Indicates incompressible
+    rhoInf          1;           // Required when rho = rhoInf
+    liftDir         (0 1 0);
+    dragDir         (1 0 0);
+    CofR            (0 0.087 0);  // Axle midpoint on ground
+    pitchAxis       (0 0 1);
+    magUInf         7.8997;
+    lRef            1.017;        // Wheelbase length
+    Aref            0.3134691981;        // Estimated
+}
+
+barriersCoeff
+{
+    type            forceCoeffs;
+
+    libs            (forces);
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (barriers);
+    rho             rhoInf;      // Indicates incompressible
+    rhoInf          1;           // Required when rho = rhoInf
+    liftDir         (0 1 0);
+    dragDir         (1 0 0);
+    CofR            (0 0.087 0);  // Axle midpoint on ground
+    pitchAxis       (0 0 1);
+    magUInf         7.8997;
+    lRef            1.017;        // Wheelbase length
+    Aref            0.3134691981;        // Estimated
+}
+
+guidevanesCoeff
+{
+    type            forceCoeffs;
+
+    libs            (forces);
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (guidevanes);
+    rho             rhoInf;      // Indicates incompressible
+    rhoInf          1;           // Required when rho = rhoInf
+    liftDir         (0 1 0);
+    dragDir         (1 0 0);
+    CofR            (0 0.087 0);  // Axle midpoint on ground
+    pitchAxis       (0 0 1);
+    magUInf         7.8997;
+    lRef            1.017;        // Wheelbase length
+    Aref            0.3134691981;        // Estimated
+}
+
+/*
+binField1
+{
+    type                    binField;
+    libs                    (fieldFunctionObjects);
+    binModel                singleDirectionUniformBin;
+    fields                  (forceCoeff);
+    patches                 (deck guidevanes barriers);
+    decomposePatchValues    true;
+    CofR                    ${../forceCoeffs1/CofR};
+
+    binData
+    {
+        nBin        20;          // output data into 20 bins
+        direction   (1 0 0);     // bin direction
+        cumulative  yes;
+    }
+    writeControl            timeStep;
+}
+*/
+
+
+// ************************************************************************* //
